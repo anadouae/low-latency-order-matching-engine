@@ -1,0 +1,6 @@
+services:
+  ome:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: ["--demo"]

@@ -1,0 +1,28 @@
+name: benchmark
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"
+
+jobs:
+  bench:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            clang cmake ninja-build git ca-certificates
+
+      - name: Configure & build
+        run: |
+          cmake --preset release
+          cmake --build --preset release -j --target lob_hotpath_bench queue_bench
+
+      - name: Run benchmarks
+        run: |
+          ./build/release/benchmarks/lob_hotpath_bench --benchmark_min_time=0.1s
+          ./build/release/benchmarks/queue_bench --benchmark_min_time=0.1s

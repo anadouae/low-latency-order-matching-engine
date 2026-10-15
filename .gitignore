@@ -1,0 +1,36 @@
+# Build
+build/
+cmake-build-*/
+out/
+compile_commands.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# CMake / CTest
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Testing/
+_deps/
+
+# Binaries / artifacts
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+
+# Sanitizer / coverage
+*.profraw
+*.profdata
+default.profraw
+
+# Python / local
+__pycache__/
+.venv/
